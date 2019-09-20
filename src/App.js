@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { CardList } from "./components/card-list/card-list.component";
 import logo from "./logo.svg";
+import axios from "axios";
 
 class App extends Component {
   state = {};
@@ -13,9 +14,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://api.pokemontcg.io/v1/cards")
-      .then(response => response.json())
-      .then(pokemon => this.setState({ pokemon: pokemon.cards }));
+    const getCards = async () => {
+      const response = await axios.get("https://api.pokemontcg.io/v1/cards");
+      console.log(response.data);
+      this.setState({ pokemon: response.data.cards });
+    };
+
+    getCards();
   }
 
   render() {
