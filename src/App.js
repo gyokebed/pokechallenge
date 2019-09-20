@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { CardList } from "./components/card-list/card-list.component";
+import logo from "./logo.svg";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+
+  constructor() {
+    super();
+    this.state = {
+      pokemon: []
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://api.pokemontcg.io/v1/cards")
+      .then(response => response.json())
+      .then(pokemon => this.setState({ pokemon: pokemon.cards }));
+  }
+
+  render() {
+    // console.log(this.state);
+    const { pokemon } = this.state;
+    return (
+      <div className="App">
+        <CardList pokemon={pokemon} />
+      </div>
+    );
+  }
 }
 
 export default App;
