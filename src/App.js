@@ -9,15 +9,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      pokemon: []
+      cards: []
     };
   }
 
   componentDidMount() {
     const getCards = async () => {
       const response = await axios.get("https://api.pokemontcg.io/v1/cards");
-      console.log(response.data);
-      this.setState({ pokemon: response.data.cards });
+      console.log(response);
+      this.setState({ cards: response.data.cards });
     };
 
     getCards();
@@ -25,10 +25,10 @@ class App extends Component {
 
   render() {
     // console.log(this.state);
-    const { pokemon } = this.state;
+    const { cards } = this.state;
     return (
       <div className="App">
-        <CardList pokemon={pokemon} />
+        <CardList pokemon={cards} />
       </div>
     );
   }
