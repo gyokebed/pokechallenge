@@ -1,0 +1,14 @@
+.pagination {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  .page-item {
+    flex-basis: 5%;
+    &.active {
+      background: green;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
