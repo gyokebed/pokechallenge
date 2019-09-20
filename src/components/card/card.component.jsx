@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 export const Card = props => {
-    const { name, imageUrl } = props.pokemon;
-    return (
-        <div className="card-container">
-          <h1>{name}</h1>
-          <img alt="pokemon" src={imageUrl} />
-        </div>
-    )
-}
+  const { name, imageUrl } = props.pokemon;
+  return (
+    <div className="card-container">
+      <h3>{name}</h3>
+      <img alt="pokemon" src={imageUrl} />
+    </div>
+  );
+};
