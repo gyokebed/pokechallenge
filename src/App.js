@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { CardList } from "./components/card-list/card-list.component";
 import { Pagination } from "./components/common/pagination.component";
 
@@ -52,7 +53,11 @@ class App extends Component {
     console.log(this.state);
     const { cards, currentPage, pageSize, totalCards } = this.state;
     return (
-      <div className="App">
+      <main className="container">
+        <Switch>
+          <Route path="/pokemon" render={() => <CardList pokemon={cards} />} />
+          <Redirect to="/pokemon" />
+        </Switch>
         <CardList pokemon={cards} />
         <Pagination
           itemsCount={totalCards}
@@ -60,7 +65,7 @@ class App extends Component {
           pageSize={pageSize}
           onPageChange={this.handlePageChange}
         ></Pagination>
-      </div>
+      </main>
     );
   }
 }
