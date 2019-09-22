@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card } from '../card/card.component';
 import './card-list.styles.scss'
@@ -27,4 +28,4 @@ const mapDispatchToProps = {
   fetchCards
 }
 
-export default connect(null, mapDispatchToProps)(CardList);
+export default withRouter(connect(null, mapDispatchToProps)(CardList));

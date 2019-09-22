@@ -8,10 +8,18 @@ export const Pagination = ({
   currentPage,
   pageSize,
   itemsCount,
+  setsCount,
   onPageChange
 }) => {
-  const pagesCount = Math.ceil(itemsCount / pageSize);
-  console.log(currentPage, 'From pagination');
+  let pagesCount;
+  
+  if (itemsCount) 
+    pagesCount = Math.ceil(itemsCount / pageSize);
+  
+  else if (setsCount)
+    pagesCount = Math.ceil(setsCount / pageSize);
+  
+  console.log(setsCount, 'From pagination');
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
 

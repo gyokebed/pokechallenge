@@ -15,6 +15,7 @@ export const fetchCards = url => {
   return dispatch => {
     axios.get(url)
     .then(response => {
+      console.log(response);
       dispatch(addCards(response));
     })
   }
@@ -24,6 +25,7 @@ export const fetchSets = url => {
   return dispatch => {
     axios.get(url)
     .then(response => {
+      console.log(response);
       dispatch(addSets(response));
     })
   }

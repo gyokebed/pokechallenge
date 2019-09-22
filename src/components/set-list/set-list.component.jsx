@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Set } from '../set/set.component';
 
@@ -26,4 +27,4 @@ const mapDispatchToProps = {
   fetchSets
 }
 
-export default connect(null, mapDispatchToProps)(SetList);
+export default withRouter(connect(null, mapDispatchToProps)(SetList));

@@ -1,6 +1,6 @@
 import { ADD_CARDS, ADD_SETS } from './actionTypes';
 
-export default (state = {cards: [], currentPage: 1, sets: []}, action) => {
+export default (state = {cards: [], sets: [], currentPage: 1}, action) => {
   switch (action.type) {
     case ADD_CARDS:
       return ({
@@ -16,7 +16,7 @@ export default (state = {cards: [], currentPage: 1, sets: []}, action) => {
       return ({
         ...state,
         pageSize: action.payload.headers['page-size'],
-        totalCards: action.payload.headers['total-count'],
+        totalSets: action.payload.headers['total-count'],
         sets: [
           ...action.payload.data.sets
         ]
