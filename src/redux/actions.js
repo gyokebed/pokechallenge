@@ -19,3 +19,12 @@ export const fetchCards = url => {
     })
   }
 };
+
+export const fetchSets = url => {
+  return dispatch => {
+    axios.get(url)
+    .then(response => {
+      dispatch(addSets(response));
+    })
+  }
+};
