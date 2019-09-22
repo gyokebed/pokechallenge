@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux';
 import _ from "lodash";
+import { fetchCards } from '../../redux/actions';
 import "./pagination.styles.scss";
 
 export const Pagination = ({
@@ -9,7 +11,7 @@ export const Pagination = ({
   onPageChange
 }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
-  //console.log(pagesCount);
+  console.log(currentPage, 'From pagination');
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
 
@@ -30,3 +32,9 @@ export const Pagination = ({
     </nav>
   );
 };
+
+const mapDispatchToProps = {
+  fetchCards
+}
+
+export default connect(null, mapDispatchToProps);
