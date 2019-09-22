@@ -11,12 +11,10 @@ class App extends Component {
 
   handlePageChange = page => {
     console.log(page);
-    console.log()
     this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`);
   };
 
   render() {
-    console.log(this.props, 'Props from render() App');
     const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
     return (
       <main className="container">
@@ -26,13 +24,6 @@ class App extends Component {
           {/* <CardList pokemon={this.props.tarjetas}></CardList> */}
           <Redirect to="/pokemon" />
         </Switch>
-        <Pagination
-          itemsCount={itemsCount}
-          setsCount={setsCount}
-          currentPage={currentPage}
-          pageSize={pageSize}
-          onPageChange={this.handlePageChange}
-        />
       </main>
     );
   }
