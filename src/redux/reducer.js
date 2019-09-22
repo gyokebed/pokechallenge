@@ -1,6 +1,6 @@
 import { ADD_CARDS } from './actionTypes';
 
-export default (state = {cards: [], currentPage: 1}, action) => {
+export default (state = {cards: [], currentPage: 1, sets: []}, action) => {
   switch (action.type) {
     case ADD_CARDS:
       return ({

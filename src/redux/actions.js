@@ -1,8 +1,13 @@
-import { ADD_CARDS } from './actionTypes';
+import { ADD_CARDS, ADD_SETS } from './actionTypes';
 import axios from 'axios';
 
 export const addCards = response => ({
   type: ADD_CARDS,
+  payload: response
+});
+
+export const addSets = response => ({
+  type: ADD_SETS,
   payload: response
 });
 

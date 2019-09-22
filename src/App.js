@@ -1,24 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch } from "react-router-dom";
-import { CardList } from "./components/card-list/card-list.component";
+import CardList from "./components/card-list/card-list.component";
 import { SetList } from "./components/set-list/set-list.component";
 import { Pagination } from "./components/common/pagination.component";
 
 import { fetchCards } from './redux/actions';
 
-import logo from "./logo.svg";
-import axios from "axios";
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    console.log(this.props);
-    this.props.fetchCards("https://api.pokemontcg.io/v1/cards");
-  }
 
   handlePageChange = page => {
     console.log(page);
@@ -31,9 +20,9 @@ class App extends Component {
     return (
       <main className="container">
         <Switch>
-          {/* <Route path="/pokemon" render={() => <CardList pokemon={this.props.cards} />} /> */}
-          <CardList pokemon={this.props.tarjetas}></CardList>
-          {/* <Route path="/sets" render={() => <SetList sets={sets} />} /> */}
+          <Route path="/pokemon" render={() => <CardList pokemon={this.props.tarjetas} />} />
+          <Route path="/sets" render={() => <SetList sets={this.props.sets} />} />
+          {/* <CardList pokemon={this.props.tarjetas}></CardList> */}
           <Redirect to="/pokemon" />
         </Switch>
         <Pagination
@@ -52,7 +41,8 @@ const mapStateToProps = state => {
     tarjetas: state.cards,
     itemsCount: state.totalCards,
     currentPage: state.currentPage,
-    pageSize: state.pageSize
+    pageSize: state.pageSize,
+    sets: state.sets
   }
 }
 
