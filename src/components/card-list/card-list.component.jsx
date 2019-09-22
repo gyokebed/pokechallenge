@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card } from '../card/card.component';
-import { Pagination } from '../common/pagination.component'
-import './card-list.styles.scss'
+import { Pagination } from '../common/pagination.component';
+import './card-list.styles.scss';
 
 import { fetchCards } from '../../redux/actions';
 
