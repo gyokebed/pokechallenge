@@ -31,7 +31,7 @@ class SetList extends Component {
           itemsCount={itemsCount}
           setsCount={setsCount}
           currentPage={currentPage}
-          pageSize={107}
+          pageSize={107} // Response headers returns pagesize of 100 but API fetch 107
           onPageChange={this.handlePageChange}
       />
       </div>
