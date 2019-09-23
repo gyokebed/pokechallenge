@@ -5,7 +5,7 @@ import { fetchCode } from '../../redux/actions';
 import { Card } from '../card/card.component';
 import { Pagination } from '../common/pagination.component';
 
-class CardInfo extends Component {
+class CodeList extends Component {
 
   componentDidMount() {
     console.log(this.props, 'Props from code list component');
@@ -16,13 +16,13 @@ class CardInfo extends Component {
     const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
     return (
       <div>
-        <Link to={`/pokemon/${this.props.pokemon.id}`}>
           <div className="card-list">
             {this.props.pokemon.map(pokemon => (
-              <Card key={pokemon.id} pokemon={pokemon} />
+              <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+                <Card pokemon={pokemon} />
+              </Link>
             ))}
           </div>
-        </Link>
         <Pagination
           itemsCount={itemsCount}
           setsCount={setsCount}
@@ -45,4 +45,4 @@ const mapDispatchToProps = {
   fetchCode
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardInfo));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CodeList));

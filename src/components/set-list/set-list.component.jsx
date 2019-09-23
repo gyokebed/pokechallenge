@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Set } from '../set/set.component';
 import { Pagination } from '../common/pagination.component';
@@ -24,7 +24,9 @@ class SetList extends Component {
       <div>
         <div className="card-list">
           {this.props.sets.map(set => (
-            <Set key={set.code} set={set} />
+            <Link to={`/sets/${set.code}`} key={set.code}>
+              <Set set={set} />
+            </Link>
           ))}
         </div>
         {/* <Pagination
