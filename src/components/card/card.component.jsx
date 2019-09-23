@@ -12,7 +12,7 @@ const H2 = posed.h2({
 });
 
 export const Card = props => {
-  const { name, imageUrl, id } = props.pokemon;
+  const { name, imageUrl } = props.pokemon;
   return (
     <Container className="card-container">
       <H2>{name}</H2>

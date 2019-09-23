@@ -11,7 +11,7 @@ const H2 = posed.h2({
 });
 
 export const Set = props => {
-  const { name, logoUrl, code } = props.set;
+  const { name, logoUrl } = props.set;
   return (
     <Container className='card-container'>
       <H2>{name}</H2>

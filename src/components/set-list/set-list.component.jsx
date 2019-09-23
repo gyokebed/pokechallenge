@@ -14,17 +14,15 @@ class SetList extends Component {
   }
 
   handlePageChange = page => {
-    console.log(page);
     this.props.fetchSets(`https://api.pokemontcg.io/v1/sets?page=${page}`, page);
   };
 
   render() {
-    const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
-    console.log(this.props, 'Props from set list component');
+    const { sets, currentPage, itemsCount, setsCount } = this.props;
     return (
       <div>
         <div className="set-list">
-          {this.props.sets.map(set => (
+          {sets.map(set => (
             <Link to={`/sets/${set.code}`} key={set.code}>
               <Set set={set} />
             </Link>
@@ -44,12 +42,10 @@ class SetList extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tarjetas: state.cards,
-    itemsCount: state.totalCards,
+    sets: state.sets,
     setsCount: state.totalSets,
     currentPage: state.currentPage,
-    pageSize: state.pageSize,
-    sets: state.sets
+    pageSize: state.pageSize
   }
 }
  

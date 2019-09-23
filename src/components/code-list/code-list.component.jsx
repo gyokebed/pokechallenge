@@ -8,21 +8,19 @@ import { Pagination } from '../common/pagination.component';
 class CodeList extends Component {
 
   componentDidMount() {
-    console.log(this.props, 'Props from code list component');
     this.props.fetchCode(`https://api.pokemontcg.io/v1/cards?setCode=${this.props.match.params.code}`, 1);
   }
 
   handlePageChange = page => {
-    console.log(page);
     this.props.fetchCode(`https://api.pokemontcg.io/v1/cards?setCode=${this.props.match.params.code}&page=${page}`, page);
   };
 
   render() {
-    const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
+    const { cards, currentPage, pageSize, itemsCount } = this.props;
     return (
       <div>
           <div className="card-list">
-            {this.props.pokemon.map(pokemon => (
+            {cards.map(pokemon => (
               <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
                 <Card pokemon={pokemon} />
               </Link>
@@ -30,7 +28,6 @@ class CodeList extends Component {
           </div>
         <Pagination
           itemsCount={itemsCount}
-          setsCount={setsCount}
           currentPage={currentPage}
           pageSize={pageSize}
           onPageChange={this.handlePageChange}
@@ -42,7 +39,7 @@ class CodeList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    card: state.card,
+    cards: state.cards,
     itemsCount: state.totalCards,
     currentPage: state.currentPage,
     pageSize: state.pageSize,

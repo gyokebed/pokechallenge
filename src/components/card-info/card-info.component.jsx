@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import posed from 'react-pose';
 import { fetchCard } from '../../redux/actions';
-import './card-info.styles.scss'
+import './card-info.styles.scss';
 
 const Container = posed.div({
   enter: { staggerChildren: 50 }
@@ -24,7 +24,7 @@ class CardInfo extends Component {
     const { imageUrl, name, artist, types, id, subtype, set } = this.props.card;
     return (
       <Container className="pokemon-info">
-        <img src={imageUrl} />
+        <img alt='Pokemon' src={imageUrl} />
         <H2>Name: {name}</H2>
         <H2>Artist: {artist}</H2>
         <H2>Set: {set}</H2>

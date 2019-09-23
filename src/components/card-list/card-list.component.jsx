@@ -10,29 +10,26 @@ import { fetchCards } from '../../redux/actions';
 class CardList extends Component {
 
   componentDidMount() {
-    console.log(this.props, 'Props from card list component');
     this.props.fetchCards("https://api.pokemontcg.io/v1/cards", 1);
   }
 
   handlePageChange = page => {
-    console.log(page);
     this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`, page);
   };
 
   render() {
-    const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
+    const { cards, itemsCount, currentPage, pageSize } = this.props;
     return (
       <div>
         <div className="card-list">
-          {this.props.pokemon.map(pokemon => (
-            <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
-              <Card pokemon={pokemon} />
+          {cards.map(card => (
+            <Link to={`/pokemon/${card.id}`} key={card.id}>
+              <Card pokemon={card} />
             </Link>
           ))}
         </div>
         <Pagination
           itemsCount={itemsCount}
-          setsCount={setsCount}
           currentPage={currentPage}
           pageSize={pageSize}
           onPageChange={this.handlePageChange}
@@ -42,14 +39,12 @@ class CardList extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    tarjetas: state.cards,
+    cards: state.cards,
     itemsCount: state.totalCards,
-    setsCount: state.totalSets,
     currentPage: state.currentPage,
-    pageSize: state.pageSize,
-    sets: state.sets
+    pageSize: state.pageSize
   }
 }
 

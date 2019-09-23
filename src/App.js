@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import posed, { PoseGroup } from 'react-pose';
 import NavBar from './components/common/nav-bar.component';
@@ -7,7 +6,6 @@ import CardList from "./components/card-list/card-list.component";
 import SetList from "./components/set-list/set-list.component";
 import CardInfo from './components/card-info/card-info.component'
 import CodeList from './components/code-list/code-list.component'
-import { fetchCards } from './redux/actions';
 
 const RoutesContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -16,13 +14,7 @@ const RoutesContainer = posed.div({
 
 class App extends Component {
 
-  handlePageChange = page => {
-    console.log(page);
-    this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`);
-  };
-
   render() {
-    const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
     return (
       <React.Fragment>
       <NavBar/>
@@ -32,9 +24,9 @@ class App extends Component {
             <RoutesContainer key={location.pathname}>
               <Switch location={location}>
                 <Route path="/pokemon/:id" component={CardInfo} />
-                <Route path="/pokemon" render={() => <CardList pokemon={this.props.tarjetas} />} />
-                <Route path="/sets/:code" render={() => <CodeList pokemon={this.props.tarjetas} />} />
-                <Route path="/sets" render={() => <SetList sets={this.props.sets} />} />
+                <Route path="/pokemon" component={CardList} />
+                <Route path="/sets/:code" component={CodeList} />
+                <Route path="/sets" component={SetList} />
                 <Redirect to="/pokemon" />
               </Switch>
             </RoutesContainer>
@@ -46,19 +38,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    tarjetas: state.cards,
-    itemsCount: state.totalCards,
-    setsCount: state.totalSets,
-    currentPage: state.currentPage,
-    pageSize: state.pageSize,
-    sets: state.sets
-  }
-}
-
-const mapDispatchToProps = {
-  fetchCards
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(App);
