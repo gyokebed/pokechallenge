@@ -1,16 +1,68 @@
+// .pagination {
+//   list-style: none;
+//   display: flex;
+//   flex-wrap: wrap;
+//   .page-item {
+//     flex-basis: 5%;
+//     &.active {
+//       background: green;
+//     }
+//     a {
+//       cursor: pointer;
+//     }
+//   }
+// }
 .pagination {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  .page-item {
-    flex-basis: 5%;
-    &.active {
-      background: green;
+	line-height: 40px;
+	background-color: #3630bf;
+	margin-top: 50px;
+	ul {
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+		padding: 0;
+		margin: 0;
+    box-shadow: 0 10px 20px 0 rgba(black, 0.25);
+    .page-item {
+      &.active {
+        background: #f564a9;
+        opacity: 0.8;
+      }
+      &:hover {
+        color: white;
+      }
     }
-    a {
-      cursor: pointer;
-    }
-  }
+		li {
+			flex: 1;
+			list-style: none;
+			text-align: center;
+			position: relative;
+			font-size: 20px;
+			font-weight: bold;
+			transition: 0.5s ease;
+			cursor: pointer;
+      user-select: none;
+      flex-basis: 4%;
+			&:hover {
+				background-color: rgba(white, 0.25);
+				color: #f564a9;
+				@for $i from 2 through 5 {
+					&:nth-of-type(#{$i}) ~ .bar {
+						left: $i * 20% - 20%;
+					}
+				}
+      }
+		}
+		.bar {
+			width: 20%;
+			background-color: #f564a9;
+			height: 5px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			transition: 0.5s ease;
+		}
+	}
 }
 
 .navbar {
