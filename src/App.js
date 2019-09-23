@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import posed, { PoseGroup } from 'react-pose';
+import NavBar from './components/common/nav-bar.component';
 import CardList from "./components/card-list/card-list.component";
 import SetList from "./components/set-list/set-list.component";
 import CardInfo from './components/card-info/card-info.component'
@@ -23,6 +24,8 @@ class App extends Component {
   render() {
     const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
     return (
+      <React.Fragment>
+      <NavBar/>
       <main className="container">
         <Route render={({ location }) => (
           <PoseGroup>
@@ -38,6 +41,7 @@ class App extends Component {
           </PoseGroup>
         )}/>
       </main>
+      </React.Fragment>
     );
   }
 }
