@@ -10,10 +10,13 @@ class CardInfo extends Component {
   }
 
   render() {
-    const { card } = this.props;
+    const { imageUrl, name, artist, types, attacks, weaknesses } = this.props.card;
     return (
-      <div>
-        <h1>CARD INFO COMPONENT {card.name}</h1>
+      <div className="pokemon-info">
+        <img src={imageUrl} />
+        <h1>Name: {name}</h1>
+        <p>Types: {types}</p>
+        <p>Artist: {artist}</p>
       </div>
     );
   }
