@@ -26,7 +26,6 @@
 			font-size: 20px;
 			font-weight: bold;
 			transition: 0.5s ease;
-			cursor: pointer;
       user-select: none;
       flex-basis: 4%;
 			&:hover {
@@ -37,6 +36,9 @@
 						left: $i * 20% - 20%;
 					}
 				}
+      }
+      a {
+        cursor: pointer;
       }
 		}
 	}
