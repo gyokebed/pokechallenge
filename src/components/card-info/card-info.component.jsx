@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import posed from 'react-pose';
 import { fetchCard } from '../../redux/actions';
+
+const Container = posed.div({
+  enter: { staggerChildren: 50 }
+});
+
+const H2 = posed.h2({
+  enter: { x: 0, opacity: 1 },
+  exit: { x: 50, opacity: 0 }
+});
 
 class CardInfo extends Component {
 
@@ -12,12 +22,12 @@ class CardInfo extends Component {
   render() {
     const { imageUrl, name, artist, types, attacks, weaknesses } = this.props.card;
     return (
-      <div className="pokemon-info">
+      <Container className="pokemon-info">
         <img src={imageUrl} />
-        <h1>Name: {name}</h1>
-        <p>Types: {types}</p>
-        <p>Artist: {artist}</p>
-      </div>
+        <H2>Name: {name}</H2>
+        <H2>Types: {types}</H2>
+        <H2>Artist: {artist}</H2>
+      </Container>
     );
   }
 }
