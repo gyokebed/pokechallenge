@@ -1,6 +1,6 @@
-import { ADD_CARDS, ADD_SETS, SHOW_CARD_INFO, SHOW_CARD_LIST_BY_CODE } from './actionTypes';
+import { ADD_CARDS, ADD_SETS, SHOW_CARD_INFO, SHOW_CARD_LIST_BY_CODE, UPDATE_PAGE } from './actionTypes';
 
-export default (state = {cards: [], sets: [], card: [], currentPage: 1}, action) => {
+export default (state = {cards: [], sets: [], card: []}, action) => {
   switch (action.type) {
     case ADD_CARDS:
       return ({
@@ -36,6 +36,12 @@ export default (state = {cards: [], sets: [], card: [], currentPage: 1}, action)
           cards: [
             ...action.payload.data.cards
           ]
+        });
+
+      case UPDATE_PAGE:
+        return ({
+          ...state,
+          currentPage: action.payload
         });
 
     default:

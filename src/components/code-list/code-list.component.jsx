@@ -9,8 +9,13 @@ class CodeList extends Component {
 
   componentDidMount() {
     console.log(this.props, 'Props from code list component');
-    this.props.fetchCode(`https://api.pokemontcg.io/v1/cards?setCode=${this.props.match.params.code}`);
+    this.props.fetchCode(`https://api.pokemontcg.io/v1/cards?setCode=${this.props.match.params.code}`, 1);
   }
+
+  handlePageChange = page => {
+    console.log(page);
+    this.props.fetchCode(`https://api.pokemontcg.io/v1/cards?setCode=${this.props.match.params.code}&page=${page}`, page);
+  };
 
   render() {
     const { cards, currentPage, pageSize, itemsCount, setsCount } = this.props;
@@ -38,6 +43,9 @@ class CodeList extends Component {
 const mapStateToProps = (state) => {
   return {
     card: state.card,
+    itemsCount: state.totalCards,
+    currentPage: state.currentPage,
+    pageSize: state.pageSize,
   }
 }
 

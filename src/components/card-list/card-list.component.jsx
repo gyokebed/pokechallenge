@@ -11,12 +11,12 @@ class CardList extends Component {
 
   componentDidMount() {
     console.log(this.props, 'Props from card list component');
-    this.props.fetchCards("https://api.pokemontcg.io/v1/cards");
+    this.props.fetchCards("https://api.pokemontcg.io/v1/cards", 1);
   }
 
   handlePageChange = page => {
     console.log(page);
-    this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`);
+    this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`, page);
   };
 
   render() {

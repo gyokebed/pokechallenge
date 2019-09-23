@@ -9,8 +9,8 @@ import CodeList from './components/code-list/code-list.component'
 import { fetchCards } from './redux/actions';
 
 const RoutesContainer = posed.div({
-  enter: { opacity: 1, delay: 500, beforeChildren: true },
-  exit: { opacity: 0 }
+  enter: { opacity: 1, delay: 300, beforeChildren: true },
+  exit: { opacity: .5 }
 });
 
 class App extends Component {

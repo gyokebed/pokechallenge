@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Set } from '../set/set.component';
+import '../card-list/card-list.styles.scss';
 import { Pagination } from '../common/pagination.component';
 
 import { fetchSets } from '../../redux/actions';
@@ -9,12 +10,12 @@ import { fetchSets } from '../../redux/actions';
 class SetList extends Component {
 
   componentDidMount() {
-    this.props.fetchSets("https://api.pokemontcg.io/v1/sets");
+    this.props.fetchSets("https://api.pokemontcg.io/v1/sets", 1);
   }
 
   handlePageChange = page => {
     console.log(page);
-    this.props.fetchSets(`https://api.pokemontcg.io/v1/sets?page=${page}`);
+    this.props.fetchSets(`https://api.pokemontcg.io/v1/sets?page=${page}`, page);
   };
 
   render() {
@@ -29,13 +30,13 @@ class SetList extends Component {
             </Link>
           ))}
         </div>
-        {/* <Pagination
+        <Pagination
           itemsCount={itemsCount}
           setsCount={setsCount}
           currentPage={currentPage}
-          pageSize={107} // Response headers returns pagesize of 100 but API fetch 107
+          pageSize={107} // Response headers only returns pagesize of 100 but API fetch 107
           onPageChange={this.handlePageChange}
-      /> */}
+      />
       </div>
     );
   }
