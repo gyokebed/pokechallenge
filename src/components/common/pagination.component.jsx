@@ -1,7 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
 import _ from "lodash";
-import "./pagination.styles.scss";
+import "./common.styles.scss";
 
 export const Pagination = ({
   currentPage,

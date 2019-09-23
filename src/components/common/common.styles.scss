@@ -12,3 +12,15 @@
     }
   }
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  background: #3630bf;
+  padding: 20px;
+  margin-bottom: 50px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
