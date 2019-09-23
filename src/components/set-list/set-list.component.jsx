@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Set } from '../set/set.component';
-import '../card-list/card-list.styles.scss';
+import './set-list.styles.scss';
 import { Pagination } from '../common/pagination.component';
 
 import { fetchSets } from '../../redux/actions';
@@ -23,7 +23,7 @@ class SetList extends Component {
     console.log(this.props, 'Props from set list component');
     return (
       <div>
-        <div className="card-list">
+        <div className="set-list">
           {this.props.sets.map(set => (
             <Link to={`/sets/${set.code}`} key={set.code}>
               <Set set={set} />
