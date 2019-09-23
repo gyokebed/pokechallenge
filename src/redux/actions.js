@@ -1,4 +1,4 @@
-import { ADD_CARDS, ADD_SETS, SHOW_CARD_INFO } from './actionTypes';
+import { ADD_CARDS, ADD_SETS, SHOW_CARD_INFO, SHOW_CARD_LIST_BY_CODE } from './actionTypes';
 import axios from 'axios';
 
 export const addCards = response => ({
@@ -13,6 +13,11 @@ export const addSets = response => ({
 
 export const showCard = response => ({
   type: SHOW_CARD_INFO,
+  payload: response
+});
+
+export const showCode = response => ({
+  type: SHOW_CARD_LIST_BY_CODE,
   payload: response
 });
 
@@ -42,6 +47,16 @@ export const fetchCard = url => {
     .then(response => {
       console.log(response);
       dispatch(showCard(response));
+    })
+  }
+};
+
+export const fetchCode = url => {
+  return dispatch => {
+    axios.get(url)
+    .then(response => {
+      console.log(response);
+      dispatch(showCode(response));
     })
   }
 };

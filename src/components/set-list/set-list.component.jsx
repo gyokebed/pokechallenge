@@ -27,13 +27,13 @@ class SetList extends Component {
             <Set key={set.code} set={set} />
           ))}
         </div>
-        <Pagination
+        {/* <Pagination
           itemsCount={itemsCount}
           setsCount={setsCount}
           currentPage={currentPage}
           pageSize={107} // Response headers returns pagesize of 100 but API fetch 107
           onPageChange={this.handlePageChange}
-      />
+      /> */}
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card } from '../card/card.component';
 import { Pagination } from '../common/pagination.component';
@@ -25,7 +25,9 @@ class CardList extends Component {
       <div>
         <div className="card-list">
           {this.props.pokemon.map(pokemon => (
-            <Card key={pokemon.id} pokemon={pokemon} />
+            <Link to={`/pokemon/${pokemon.id}`} key={pokemon.id}>
+              <Card pokemon={pokemon} />
+            </Link>
           ))}
         </div>
         <Pagination
