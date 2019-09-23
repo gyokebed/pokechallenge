@@ -30,7 +30,6 @@ export const fetchCards = (url, page) => {
   return dispatch => {
     axios.get(url)
     .then(response => {
-      console.log(response);
       dispatch(addCards(response));
       dispatch(updateCurrentPage(page));
     })
@@ -41,7 +40,6 @@ export const fetchSets = (url, page) => {
   return dispatch => {
     axios.get(url)
     .then(response => {
-      console.log(response);
       dispatch(addSets(response));
       dispatch(updateCurrentPage(page));
     })
@@ -52,7 +50,6 @@ export const fetchCard = url => {
   return dispatch => {
     axios.get(url)
     .then(response => {
-      console.log(response);
       dispatch(showCard(response));
     })
   }
@@ -62,7 +59,6 @@ export const fetchCode = (url, page) => {
   return dispatch => {
     axios.get(url)
     .then(response => {
-      console.log(response);
       dispatch(showCode(response));
       dispatch(updateCurrentPage(page));
     })

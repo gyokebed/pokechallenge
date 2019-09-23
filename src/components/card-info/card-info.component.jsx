@@ -16,7 +16,6 @@ const H2 = posed.h2({
 class CardInfo extends Component {
 
   componentDidMount() {
-    console.log(this.props, 'Props from card info component');
     this.props.fetchCard(`https://api.pokemontcg.io/v1/cards/${this.props.match.params.id}`);
   }
 
