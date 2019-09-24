@@ -1,13 +1,13 @@
 .pagination {
-	line-height: 40px;
-	background-color: #3630bf;
-	margin-top: 50px;
-	ul {
+  line-height: 40px;
+  background-color: #3630bf;
+  margin-top: 50px;
+  ul {
     display: flex;
     flex-wrap: wrap;
     color: white;
-		padding: 0;
-		margin: 0;
+    padding: 0;
+    margin: 0;
     box-shadow: 0 10px 20px 0 rgba(black, 0.25);
     .page-item {
       &.active {
@@ -18,33 +18,43 @@
         color: white;
       }
     }
-		li {
-			flex: 1;
-			list-style: none;
-			text-align: center;
-			position: relative;
-			font-size: 20px;
-			font-weight: bold;
-			transition: 0.5s ease;
+    li {
+      flex: 1;
+      list-style: none;
+      text-align: center;
+      position: relative;
+      font-size: 20px;
+      font-weight: bold;
+      transition: 0.5s ease;
       user-select: none;
       flex-basis: 4%;
-			&:hover {
-				background-color: rgba(white, 0.25);
-				color: #f564a9;
-				@for $i from 2 through 5 {
-					&:nth-of-type(#{$i}) ~ .bar {
-						left: $i * 20% - 20%;
-					}
-				}
+      &:hover {
+        background-color: rgba(white, 0.25);
+        color: #f564a9;
+        @for $i from 2 through 5 {
+          &:nth-of-type(#{$i}) ~ .bar {
+            left: $i * 20% - 20%;
+          }
+        }
       }
       div {
         cursor: pointer;
       }
-		}
-	}
+    }
+  }
 }
 
 .navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  margin-bottom: 80px;
+  .nav-button {
+    padding: 5px 10px;
+    &.active {
+      background: #f564a9;
+    }
+  }
   display: flex;
   justify-content: space-evenly;
   background: #3630bf;
