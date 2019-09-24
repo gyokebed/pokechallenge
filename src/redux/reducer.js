@@ -12,7 +12,7 @@ export default (state = { cards: [], sets: [], card: [] }, action) => {
       return {
         ...state,
         pageSize: action.payload.headers["page-size"],
-        totalCards: action.payload.headers["total-count"],
+        totalCount: action.payload.headers["total-count"],
         cards: [...action.payload.data.cards]
       };
 
@@ -20,7 +20,7 @@ export default (state = { cards: [], sets: [], card: [] }, action) => {
       return {
         ...state,
         pageSize: action.payload.headers["page-size"],
-        totalSets: action.payload.headers["total-count"],
+        totalCount: action.payload.headers["total-count"],
         sets: [...action.payload.data.sets]
       };
 
@@ -34,7 +34,7 @@ export default (state = { cards: [], sets: [], card: [] }, action) => {
       return {
         ...state,
         pageSize: action.payload.headers["page-size"],
-        totalCards: action.payload.headers["total-count"],
+        totalCount: action.payload.headers["total-count"],
         cards: [...action.payload.data.cards]
       };
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Card } from "../card/card.component";
-import { Pagination } from "../common/pagination.component";
+import Pagination from "../common/pagination.component";
 import "./card-list.styles.scss";
 
 import { fetchCards } from "../../redux/actions";
@@ -20,7 +20,7 @@ class CardList extends Component {
   };
 
   render() {
-    const { cards, totalCards, currentPage, pageSize } = this.props;
+    const { cards } = this.props;
     return (
       <div>
         <div className="card-list">
@@ -30,23 +30,15 @@ class CardList extends Component {
             </Link>
           ))}
         </div>
-        <Pagination
-          itemsCount={totalCards}
-          currentPage={currentPage}
-          pageSize={pageSize}
-          onPageChange={this.handlePageChange}
-        />
+        <Pagination onPageChange={this.handlePageChange} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ cards, totalCards, currentPage, pageSize }) => {
+const mapStateToProps = ({ cards }) => {
   return {
-    cards,
-    totalCards,
-    currentPage,
-    pageSize
+    cards
   };
 };
 

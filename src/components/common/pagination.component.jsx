@@ -1,19 +1,10 @@
 import React from "react";
 import _ from "lodash";
+import { connect } from "react-redux";
 import "./common.styles.scss";
 
-export const Pagination = ({
-  currentPage,
-  pageSize,
-  itemsCount,
-  setsCount,
-  onPageChange
-}) => {
-  let pagesCount;
-
-  if (itemsCount) pagesCount = Math.ceil(itemsCount / pageSize);
-  else if (setsCount) pagesCount = Math.ceil(setsCount / pageSize);
-
+const Pagination = ({ currentPage, pageSize, totalCount, onPageChange }) => {
+  const pagesCount = Math.ceil(totalCount / pageSize);
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
 
@@ -34,3 +25,14 @@ export const Pagination = ({
     </nav>
   );
 };
+
+const mapStateToProps = ({ cards, totalCount, currentPage, pageSize }) => {
+  return {
+    cards,
+    totalCount,
+    currentPage,
+    pageSize
+  };
+};
+
+export default connect(mapStateToProps)(Pagination);

@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchCode } from "../../redux/actions";
 import { Card } from "../card/card.component";
-import { Pagination } from "../common/pagination.component";
+import Pagination from "../common/pagination.component";
 
 class CodeList extends Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ class CodeList extends Component {
   };
 
   render() {
-    const { cards, currentPage, pageSize, totalCards } = this.props;
+    const { cards } = this.props;
     return (
       <div>
         <div className="card-list">
@@ -31,23 +31,15 @@ class CodeList extends Component {
             </Link>
           ))}
         </div>
-        <Pagination
-          itemsCount={totalCards}
-          currentPage={currentPage}
-          pageSize={pageSize}
-          onPageChange={this.handlePageChange}
-        />
+        <Pagination onPageChange={this.handlePageChange} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ cards, totalCards, currentPage, pageSize }) => {
+const mapStateToProps = ({ cards }) => {
   return {
-    cards,
-    totalCards,
-    currentPage,
-    pageSize
+    cards
   };
 };
 
