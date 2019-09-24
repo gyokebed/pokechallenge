@@ -1,24 +1,26 @@
 import React, { Component } from "react";
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Card } from '../card/card.component';
-import { Pagination } from '../common/pagination.component';
-import './card-list.styles.scss';
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Card } from "../card/card.component";
+import { Pagination } from "../common/pagination.component";
+import "./card-list.styles.scss";
 
-import { fetchCards } from '../../redux/actions';
+import { fetchCards } from "../../redux/actions";
 
 class CardList extends Component {
-
   componentDidMount() {
     this.props.fetchCards("https://api.pokemontcg.io/v1/cards", 1);
   }
 
   handlePageChange = page => {
-    this.props.fetchCards(`https://api.pokemontcg.io/v1/cards?page=${page}`, page);
+    this.props.fetchCards(
+      `https://api.pokemontcg.io/v1/cards?page=${page}`,
+      page
+    );
   };
 
   render() {
-    const { cards, itemsCount, currentPage, pageSize } = this.props;
+    const { cards, totalCards, currentPage, pageSize } = this.props;
     return (
       <div>
         <div className="card-list">
@@ -29,7 +31,7 @@ class CardList extends Component {
           ))}
         </div>
         <Pagination
-          itemsCount={itemsCount}
+          itemsCount={totalCards}
           currentPage={currentPage}
           pageSize={pageSize}
           onPageChange={this.handlePageChange}
@@ -39,17 +41,22 @@ class CardList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ cards, totalCards, currentPage, pageSize }) => {
   return {
-    cards: state.cards,
-    itemsCount: state.totalCards,
-    currentPage: state.currentPage,
-    pageSize: state.pageSize
-  }
-}
+    cards,
+    totalCards,
+    currentPage,
+    pageSize
+  };
+};
 
 const mapDispatchToProps = {
   fetchCards
-}
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardList));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CardList)
+);

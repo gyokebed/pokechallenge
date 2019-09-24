@@ -1,24 +1,26 @@
 import React, { Component } from "react";
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Set } from '../set/set.component';
-import './set-list.styles.scss';
-import { Pagination } from '../common/pagination.component';
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Set } from "../set/set.component";
+import "./set-list.styles.scss";
+import { Pagination } from "../common/pagination.component";
 
-import { fetchSets } from '../../redux/actions';
+import { fetchSets } from "../../redux/actions";
 
 class SetList extends Component {
-
   componentDidMount() {
     this.props.fetchSets("https://api.pokemontcg.io/v1/sets", 1);
   }
 
   handlePageChange = page => {
-    this.props.fetchSets(`https://api.pokemontcg.io/v1/sets?page=${page}`, page);
+    this.props.fetchSets(
+      `https://api.pokemontcg.io/v1/sets?page=${page}`,
+      page
+    );
   };
 
   render() {
-    const { sets, currentPage, itemsCount, setsCount } = this.props;
+    const { sets, currentPage, totalSets } = this.props;
     return (
       <div>
         <div className="set-list">
@@ -29,28 +31,32 @@ class SetList extends Component {
           ))}
         </div>
         <Pagination
-          itemsCount={itemsCount}
-          setsCount={setsCount}
+          setsCount={totalSets}
           currentPage={currentPage}
           pageSize={107} // Response headers only returns pagesize of 100 but API fetch 107
           onPageChange={this.handlePageChange}
-      />
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ sets, totalSets, currentPage, pageSize }) => {
   return {
-    sets: state.sets,
-    setsCount: state.totalSets,
-    currentPage: state.currentPage,
-    pageSize: state.pageSize
-  }
-}
- 
+    sets,
+    totalSets,
+    currentPage,
+    pageSize
+  };
+};
+
 const mapDispatchToProps = {
   fetchSets
-}
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SetList));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SetList)
+);

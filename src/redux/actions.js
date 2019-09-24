@@ -1,5 +1,11 @@
-import { ADD_CARDS, ADD_SETS, SHOW_CARD_INFO, SHOW_CARD_LIST_BY_CODE, UPDATE_PAGE } from './actionTypes';
-import axios from 'axios';
+import {
+  ADD_CARDS,
+  ADD_SETS,
+  SHOW_CARD_INFO,
+  SHOW_CARD_LIST_BY_CODE,
+  UPDATE_PAGE
+} from "./actionTypes";
+import axios from "axios";
 
 export const addCards = response => ({
   type: ADD_CARDS,
@@ -28,39 +34,35 @@ export const updateCurrentPage = page => ({
 
 export const fetchCards = (url, page) => {
   return dispatch => {
-    axios.get(url)
-    .then(response => {
+    axios.get(url).then(response => {
       dispatch(addCards(response));
       dispatch(updateCurrentPage(page));
-    })
-  }
+    });
+  };
 };
 
 export const fetchSets = (url, page) => {
   return dispatch => {
-    axios.get(url)
-    .then(response => {
+    axios.get(url).then(response => {
       dispatch(addSets(response));
       dispatch(updateCurrentPage(page));
-    })
-  }
+    });
+  };
 };
 
 export const fetchCard = url => {
   return dispatch => {
-    axios.get(url)
-    .then(response => {
+    axios.get(url).then(response => {
       dispatch(showCard(response));
-    })
-  }
+    });
+  };
 };
 
 export const fetchCode = (url, page) => {
   return dispatch => {
-    axios.get(url)
-    .then(response => {
+    axios.get(url).then(response => {
       dispatch(showCode(response));
       dispatch(updateCurrentPage(page));
-    })
-  }
+    });
+  };
 };

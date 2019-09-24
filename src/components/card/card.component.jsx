@@ -1,6 +1,6 @@
 import React from "react";
-import posed from 'react-pose';
-import './card.styles.scss';
+import posed from "react-pose";
+import "./card.styles.scss";
 
 const Container = posed.div({
   enter: { staggerChildren: 50 }
