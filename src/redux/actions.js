@@ -1,6 +1,6 @@
 import {
-  ADD_CARDS,
-  ADD_SETS,
+  SHOW_CARDS,
+  SHOW_SETS,
   SHOW_CARD_INFO,
   SHOW_CARD_LIST_BY_CODE,
   UPDATE_PAGE
@@ -8,12 +8,12 @@ import {
 import axios from "axios";
 
 export const addCards = response => ({
-  type: ADD_CARDS,
+  type: SHOW_CARDS,
   payload: response
 });
 
 export const addSets = response => ({
-  type: ADD_SETS,
+  type: SHOW_SETS,
   payload: response
 });
 
